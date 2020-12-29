@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# create ctags
+echo "mktags: create ctags file."
+ctags -Rf tags
+
+# create cscope database
+echo "mktags: create cscope database."
+find ./ -name "*.[chs]" \
+         -o -name "*.cc" \
+         -o -name "*.spp" \
+         -o -name "*.lds*" \
+         > cscope.files
+
+         cscope -bqv -i cscope.files -f cscope.out
+
+#-o -name "*.py" \
+#-o -name "SCon*" \
